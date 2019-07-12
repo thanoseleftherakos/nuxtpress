@@ -51,7 +51,8 @@
     	    _wp_menu_item_classes_by_context($menu_items);
     	    $sorted_menu_items = $menu_items_with_children = array();
     	    foreach ( (array) $menu_items as $menu_item ) {
-    	        $sorted_menu_items[ $menu_item->menu_order ] = $menu_item;
+				$sorted_menu_items[ $menu_item->menu_order ] = $menu_item;
+				$menu_item->post_slug = get_post_field( 'post_name', $menu_item->object_id );
     	        if ( $menu_item->menu_item_parent )
     	            $menu_items_with_children[ $menu_item->menu_item_parent ] = true;
     	    }
