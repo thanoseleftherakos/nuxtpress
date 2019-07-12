@@ -1,9 +1,6 @@
 
 export default {
   mode: 'universal',
-  env: {
-    wordpressApiBaseUrl: 'http://www.nuxtpress.test/wp-json/wp/v2'
-  },
   /*
   ** Headers of the page
   */
@@ -32,12 +29,37 @@ export default {
   ** Plugins to load before mounting the App
   */
   plugins: [
+    '~/plugins/wordpress',
   ],
   /*
   ** Nuxt.js modules
   */
   modules: [
+    'nuxt-i18n',
+    '@nuxtjs/axios',
+    '@nuxtjs/proxy',
   ],
+  i18n: {
+    locales: [
+      {
+        code: 'el',
+        iso: 'el-GR'
+      },
+      {
+        code: 'en',
+        iso: 'en-US'
+      }
+    ],
+    // strategy: 'prefix_and_default',
+    defaultLocale: 'en',
+    vueI18n: {
+      fallbackLocale: 'en',
+    },
+    detectBrowserLanguage: {
+      useCookie: true,
+      cookieKey: 'i18n_redirected'
+    }
+  },
   /*
   ** Build configuration
   */
@@ -45,21 +67,25 @@ export default {
     /*
     ** You can extend webpack config here
     */
-   postcss: {
-    plugins: {
-      'postcss-url': false,
-      'postcss-nested': {},
-      'postcss-responsive-type': {},
-      'postcss-hexrgba': {}
+    postcss: {
+      plugins: {
+        'postcss-url': false,
+        'postcss-nested': {},
+        'postcss-responsive-type': {},
+        'postcss-hexrgba': {}
       },
-      preset: {
-      // Change the postcss-preset-env settings
-      autoprefixer: {
-        browsers: ['last 3 versions']
-      }
+    },
+
+    extend(config, ctx) {
+      
     }
   },
-    extend(config, ctx) {
-    }
+  axios: {
+    proxy: true
+  },
+  
+  proxy: {
+    '/wp-json/wp/v2/': { target: 'http://www.nuxtpress.test', changeOrigin: true }
+
   }
 }

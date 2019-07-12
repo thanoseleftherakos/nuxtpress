@@ -5,7 +5,6 @@
 </template>
 
 <script>
-import api from "../api/index";
 import HomeComponent from "@/components/pages/HomeComponent";
 import NewsComponent from "@/components/pages/NewsComponent";
 
@@ -16,21 +15,30 @@ export default {
   },
   data() {
     return {
-      template: ""
+      template: "",
+      page: {} 
     }
   },
   mounted() {
-    this.selectTemplate();
-  },
-  async asyncData ({ params }) {
-    let data = '';
-    if(params.page) {
-      data = await api.getPageBySlug(params.page)
-    } else {
-      data = await api.getPageBySlug('home');
+    if(this.page) {
+      this.selectTemplate();
     }
-    return {
-      page: data
+  },
+  async asyncData ({ params, app}) {
+    //fix nuxt-i18n bug for /localecode
+    if(app.i18n.locales.some(e => e.code === params.page)) {
+      params.page = null;
+      // app.switchLocalePath('el')
+    }
+    console.log(app.i18n.locale);
+    if(params.page) {
+      return {
+        page: await app.$wordpressApi.getPageBySlug(params.page, app.i18n.locale)
+      }
+    } else {
+      return {
+        page: await app.$wordpressApi.getPageBySlug('home', app.i18n.locale)
+      }
     }
   },
   methods: {
