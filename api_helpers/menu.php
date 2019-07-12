@@ -21,7 +21,7 @@ function nuxtpress_get_menu($params)
     $theme_locations = get_nav_menu_locations();
 
     if (!isset($params['location'])) {
-        $params['location'] = 'main';
+        $params['location'] = 'primary';
     }
 
     if (!isset($theme_locations[$params['location']])) {
