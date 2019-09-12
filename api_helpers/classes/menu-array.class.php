@@ -34,7 +34,7 @@
     	 * @return Array|null $this->menu
     	 */
     	protected function retrieveMenu($navMenuObject = null, $args = array(), $filter = null) {
-    		  global $wp_query;
+    	  global $wp_query;
           global $post;
 
           $queriedPostType = get_post_type();

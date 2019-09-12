@@ -6,7 +6,7 @@ export default $axios => resource => ({
             .catch(e => console.log(`${e.message}`))
   },
   getPosts (lang, perPage = 10) {
-    let url = `${resource}/postssdss?_embed&per_page=${perPage}&lang=${lang}`
+    let url = `${resource}/posts?_embed&per_page=${perPage}&lang=${lang}`
     return $axios.get(url)
       .then(r => r.data)
       .catch(e => console.log(`${url} ${e.message}`))
@@ -55,7 +55,7 @@ export default $axios => resource => ({
       .catch(e => console.log(`${e.message}`))
   },
   getMenu (location, lang) {
-    let url = `${resource}/menu?lang=${lang}?location=${location}`;
+    let url = `${resource}/menu?lang=${lang}&location=${location}`;
     return $axios.get(url)
     .then(r => r.data)
     .catch(e => console.log(`${e.message}`))

@@ -1,10 +1,6 @@
 <template>
   <div>
-    <nav>
-      <ul>
-        <li><a href="#">df</a></li>
-      </ul>
-    </nav>
+    <primary-menu :menuitems='getMenus.primary'></primary-menu>
     <nav>
       <nuxt-link
       v-for="locale in availableLocales"
@@ -16,10 +12,21 @@
 </template>
 
 <script>
+import PrimaryMenu from "@/components/menus/Primary";
 export default {
+  components: { 
+    PrimaryMenu
+  },
+  mounted() {
+    
+    console.log(this.getMenus.primary)
+  },
   computed: {
     availableLocales () {
       return this.$i18n.locales.filter(i => i.code !== this.$i18n.locale)
+    },
+    getMenus () {
+      return this.$store.state.menus;
     }
   }
 }

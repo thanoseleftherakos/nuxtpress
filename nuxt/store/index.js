@@ -3,14 +3,17 @@ const fetchMenu = () => {
 }
 
 export const state = () => ({
-    menu: {}
+    menus: {}
 })
 
 export const actions = {
     async nuxtServerInit ({ commit, state }, { app }) {
-    //   console.log("fetch menu");
-    //   console.log(app.i18n.locale);
-    //   await app.$wordpressApi.getMenu('main', app.i18n.locale)
+        let res = await app.$wordpressApi.getMenu('primary', app.i18n.locale)
+        commit('setPrimaryMenu', res)
+    },
+    async setMenus(context) {
+        let res = await this.app.$wordpressApi.getMenu('primary', this.app.i18n.locale)
+        context.commit('setPrimaryMenu', res)
     }
 }
 
@@ -18,7 +21,9 @@ export const getters = () => ({
     
 })
 
-export const mutations = () => ({
-    
-})
+export const mutations = {
+    setPrimaryMenu(state, data){
+        state.menus.primary = data;
+    }
+}
 

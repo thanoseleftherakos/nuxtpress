@@ -32,7 +32,6 @@ export default {
       params.page = null;
       // app.switchLocalePath('el')
     }
-    console.log(app.i18n.locale);
     if(params.page) {
       return {
         page: await app.$wordpressApi.getPageBySlug(params.page, app.i18n.locale)

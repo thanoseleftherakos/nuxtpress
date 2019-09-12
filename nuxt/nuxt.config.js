@@ -30,6 +30,7 @@ export default {
   */
   plugins: [
     '~/plugins/wordpress',
+    '~/plugins/i18n.js',
   ],
   /*
   ** Nuxt.js modules

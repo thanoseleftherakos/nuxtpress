@@ -23,6 +23,12 @@ function nuxtpress_get_menu($params)
     if (!isset($params['location'])) {
         $params['location'] = 'primary';
     }
+    if (isset($params['lang'])) {
+        global $sitepress;
+        $original_lang = ICL_LANGUAGE_CODE; // Save the current language
+        $new_lang = $params['lang']; // The language in which you want to get the terms
+        $sitepress->switch_lang($new_lang); // Switch to new language
+    }
 
     if (!isset($theme_locations[$params['location']])) {
         return new WP_Error('nuxtpress_menu_error', __('Menu location does not exist'), array('status' => 404));
@@ -36,5 +42,5 @@ function nuxtpress_get_menu($params)
 
     $menu = new nuxtpress_Menu($params['location']);
 
-    return $menu->getTree();
+    return $menu->getMenuItems();
 }
