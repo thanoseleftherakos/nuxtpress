@@ -28,5 +28,5 @@
         $embed = $object->get_param('_embed') !== NULL;
         $data = rest_get_server()->response_to_data($response, $embed);
 
-        return $data[0];
+        return $data;
     }

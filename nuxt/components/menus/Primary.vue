@@ -2,7 +2,7 @@
     <nav v-if="menuitems">
       <ul>
         <li v-for="menuitem in menuitems" v-bind:key="menuitem.ID">
-            <nuxt-link :to="menuitem.post_slug">{{ menuitem.title }}</nuxt-link>
+            <nuxt-link :to="{path : '/'+menuitem.post_slug}">{{ menuitem.title }}</nuxt-link>
         </li>
       </ul>
     </nav>

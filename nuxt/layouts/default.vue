@@ -18,8 +18,6 @@ export default {
     PrimaryMenu
   },
   mounted() {
-    
-    console.log(this.getMenus.primary)
   },
   computed: {
     availableLocales () {

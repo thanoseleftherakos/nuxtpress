@@ -3,25 +3,25 @@
       News template!
       <h1 v-html="data.title.rendered"></h1>
       <div v-html="data.content.rendered"></div>
-      <div class="news__items">
-        <a href="#" class="news__item">
-          hello
-        </a>
+      <div class="news__items" v-if="news">
+        <nuxt-link :to="{path: 'blog/'+item.slug}" class="news__item" v-for="item in news" v-bind:key="item.ID">
+          {{item.title.rendered}}
+        </nuxt-link>
       </div>
   </section>
 </template>
 
 
 <script>
+import { mapState } from 'vuex';
 export default {
     props:  ['data'],
-    data() {
-      return {
-        news: {}
-      }
+    mounted() {
+      this.$store.dispatch('setNews', 10);
     },
-    async asyncData ({ params, app}) { 
-      news: await app.$wordpressApi.getPosts(app.i18n.locale, 10)
+    computed: {
+      ...mapState(['news'])
     }
+    
 }
 </script>
