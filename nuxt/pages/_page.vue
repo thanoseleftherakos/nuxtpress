@@ -54,7 +54,6 @@ export default {
       } else {
         this.template = 'home-component';
       }
-      console.log(this.template)
     }
   }
 }
