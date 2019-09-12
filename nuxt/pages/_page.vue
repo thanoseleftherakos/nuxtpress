@@ -7,11 +7,13 @@
 <script>
 import HomeComponent from "@/components/pages/HomeComponent";
 import NewsComponent from "@/components/pages/NewsComponent";
+import PageComponent from "@/components/pages/PageComponent";
 
 export default {
   components: { 
     HomeComponent,
     NewsComponent,
+    PageComponent
   },
   data() {
     return {
@@ -44,10 +46,15 @@ export default {
   methods: {
     selectTemplate() {
       if(this.page) {
-        this.template = this.page.template.replace('template-','').replace('.php','')+ '-component';
+        if(this.page.template) {
+          this.template = this.page.template.replace('template-','').replace('.php','')+ '-component';
+        } else {
+          this.template = 'page-component';
+        }
       } else {
         this.template = 'home-component';
       }
+      console.log(this.template)
     }
   }
 }
