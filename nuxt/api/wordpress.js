@@ -1,12 +1,12 @@
 
 export default $axios => resource => ({
   getPageBySlug(slug, lang) {
-    return $axios.get(`${resource}/pages?_embed&slug=${slug}&lang=${lang}`)
-            .then(r => r.data[0])
+    return $axios.get(`${resource}/slug?_embed&slug=${slug}&lang=${lang}`)
+            .then(r => r.data)
             .catch(e => console.log(`${e.message}`))
   },
   getPosts (lang, perPage = 10) {
-    let url = `${resource}/posts?_embed&per_page=${perPage}&lang=${lang}`
+    let url = `${resource}/postssdss?_embed&per_page=${perPage}&lang=${lang}`
     return $axios.get(url)
       .then(r => r.data)
       .catch(e => console.log(`${url} ${e.message}`))
@@ -31,9 +31,9 @@ export default $axios => resource => ({
       .catch(e => console.log(`${e.message}`))
   },
   getPostBySlug (slug, lang) {
-    let url = `${resource}/posts?_embed&slug=${slug}&lang=${lang}`
+    let url = `${resource}/slug?_embed&slug=${slug}&lang=${lang}`
     return $axios.get(url)
-      .then(r => r.data[0])
+      .then(r => r.data)
       .catch(e => console.log(`${e.message}`))
   },
   getTagBySlug (slug, lang) {
@@ -53,6 +53,12 @@ export default $axios => resource => ({
     return $axios.get(url)
       .then(r => r.data)
       .catch(e => console.log(`${e.message}`))
+  },
+  getMenu (location, lang) {
+    let url = `${resource}/menu?lang=${lang}?location=${location}`;
+    return $axios.get(url)
+    .then(r => r.data)
+    .catch(e => console.log(`${e.message}`))
   },
 });
 // const api = {

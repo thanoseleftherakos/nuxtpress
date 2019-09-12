@@ -85,7 +85,7 @@ export default {
   },
   
   proxy: {
-    '/wp-json/wp/v2/': { target: 'http://www.nuxtpress.test', changeOrigin: true }
+    '/wp-json/nuxtpress/v1/': { target: 'http://www.nuxtpress.test', changeOrigin: true }
 
   }
 }

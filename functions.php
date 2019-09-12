@@ -93,6 +93,9 @@ function custom_post_gallery() {
   // adding a slug endpoint
   require_once(dirname(__FILE__) . '/api_helpers/slug.php');
 
+  // add posts endpoint
+  require_once(dirname(__FILE__) . '/api_helpers/posts.php');
+
   // integrating common meta-fields
   require_once(dirname(__FILE__) . '/api_helpers/meta.php');
 

@@ -1,6 +1,11 @@
 <template>
   <div>
     <nav>
+      <ul>
+        <li><a href="#">df</a></li>
+      </ul>
+    </nav>
+    <nav>
       <nuxt-link
       v-for="locale in availableLocales"
       :key="locale.code"

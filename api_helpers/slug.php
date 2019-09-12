@@ -7,7 +7,7 @@
 
 
     function nuxtpress_slug_route() {
-        register_rest_route('nuxtpress', '/v1/slug/(?P<slug>\S+)', array(
+        register_rest_route('nuxtpress', '/v1/slug', array(
             'methods'  => 'GET',
             'callback' => 'nuxtpress_get_slug'
         ));
@@ -17,6 +17,7 @@
     function nuxtpress_get_slug($object){
 
         $slug = $object->get_param('slug');
+
 
         $request = new WP_REST_Request('GET', '/wp/v2/posts');
         $request->set_param('slug', $slug);
