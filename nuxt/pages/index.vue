@@ -8,6 +8,7 @@
 
 <script>
 import PageComponent from "@/components/pages/PageComponent";
+import { mapState } from 'vuex'
 
 export default {
   components: { 
@@ -20,13 +21,22 @@ export default {
   },
   mounted() {
   },
+  computed: {
+    ...mapState(['initialization'])
+  },
   async asyncData ({ params, app}) {
     return {
         page: await app.$wordpressApi.getFrontPage(app.i18n.locale)
     }
   },
-  methods: {
-    
+  head () {
+    return {
+      title: `${this.page.title.rendered} | ${this.initialization.sitename}`,
+      meta: [
+        // hid is used as unique identifier. Do not use `vmid` for it as it will not work
+        { hid: 'description', name: 'description', content: 'My custom description' }
+      ]
+    }
   }
 }
 </script>

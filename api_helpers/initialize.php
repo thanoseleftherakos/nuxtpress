@@ -31,17 +31,7 @@
         } else {
             return new WP_Error( 'nuxtpress_fontpage_error', __( 'Please set  a frontpage on wordpress' ), array( 'status' => 500 ) );
         }
-        // print_r(icl_strings);
+        $response->sitename = get_bloginfo( 'name' );
         return $response;
-
-        // $response = rest_do_request( $request );
-        // if ($response->is_error()) {
-        //     return new WP_Error( 'nuxtpress_request_error', __( 'Request Error' ), array( 'status' => 500 ) );
-        // }
-
-        // $embed = $object->get_param( '_embed' ) !== NULL;
-        // $data = rest_get_server()->response_to_data( $response, $embed );
-
-        // return $data;
 
     }

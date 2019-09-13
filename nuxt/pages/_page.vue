@@ -6,7 +6,7 @@
 
 <script>
 import PageComponent from "@/components/pages/PageComponent";
-
+import { mapState } from 'vuex'
 export default {
   components: { 
     PageComponent
@@ -22,15 +22,8 @@ export default {
       this.selectTemplate();
     }
   },
-  async asyncData ({ params, app}) {
-    //fix nuxt-i18n bug for /localecode
-    if(app.i18n.locales.some(e => e.code === params.page)) {
-      params.page = null;
-      // app.switchLocalePath('el')
-    }
-    return {
-      page: await app.$wordpressApi.getPageBySlug(params.page, app.i18n.locale)
-    }
+  computed: {
+    ...mapState(['initialization'])
   },
   methods: {
     selectTemplate() {
@@ -43,6 +36,25 @@ export default {
       } else {
         this.template = 'home-component';
       }
+    }
+  },
+  async asyncData ({ params, app}) {
+    //fix nuxt-i18n bug for /localecode
+    if(app.i18n.locales.some(e => e.code === params.page)) {
+      params.page = null;
+      // app.switchLocalePath('el')
+    }
+    return {
+      page: await app.$wordpressApi.getPageBySlug(params.page, app.i18n.locale)
+    }
+  },
+  head () {
+    return {
+      title: `${this.page.title.rendered} | ${this.initialization.sitename}`,
+      meta: [
+        // hid is used as unique identifier. Do not use `vmid` for it as it will not work
+        { hid: 'description', name: 'description', content: 'My custom description' }
+      ]
     }
   }
 }
