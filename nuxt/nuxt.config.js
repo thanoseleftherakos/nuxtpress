@@ -51,7 +51,7 @@ export default {
         iso: 'en-US'
       }
     ],
-    // strategy: 'prefix_and_default',
+    strategy: 'prefix_and_default',
     defaultLocale: 'en',
     vueI18n: {
       fallbackLocale: 'en',
@@ -59,6 +59,13 @@ export default {
     detectBrowserLanguage: {
       useCookie: true,
       cookieKey: 'i18n_redirected'
+    },
+    parsePages: false,
+    pages: {
+      '/blog': {
+        en: '/newss',
+        el: '/nea'
+      }
     }
   },
   /*

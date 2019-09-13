@@ -5,6 +5,11 @@ export default $axios => resource => ({
             .then(r => r.data)
             .catch(e => console.log(`${e.message}`))
   },
+  getFrontPage(lang) {
+    return $axios.get(`${resource}/front-page?_embed&lang=${lang}`)
+            .then(r => r.data)
+            .catch(e => console.log(`${e.message}`))
+  },
   getPosts (lang, perPage = 10) {
     let url = `${resource}/posts?_embed&per_page=${perPage}&lang=${lang}`
     return $axios.get(url)
@@ -56,6 +61,12 @@ export default $axios => resource => ({
   },
   getMenu (location, lang) {
     let url = `${resource}/menu?lang=${lang}&location=${location}`;
+    return $axios.get(url)
+    .then(r => r.data)
+    .catch(e => console.log(`${e.message}`))
+  },
+  getInitialization () {
+    let url = `${resource}/initalize`;
     return $axios.get(url)
     .then(r => r.data)
     .catch(e => console.log(`${e.message}`))

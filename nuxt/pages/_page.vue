@@ -5,14 +5,10 @@
 </template>
 
 <script>
-import HomeComponent from "@/components/pages/HomeComponent";
-import NewsComponent from "@/components/pages/NewsComponent";
 import PageComponent from "@/components/pages/PageComponent";
 
 export default {
   components: { 
-    HomeComponent,
-    NewsComponent,
     PageComponent
   },
   data() {
@@ -32,14 +28,8 @@ export default {
       params.page = null;
       // app.switchLocalePath('el')
     }
-    if(params.page) {
-      return {
-        page: await app.$wordpressApi.getPageBySlug(params.page, app.i18n.locale)
-      }
-    } else {
-      return {
-        page: await app.$wordpressApi.getPageBySlug('home', app.i18n.locale)
-      }
+    return {
+      page: await app.$wordpressApi.getPageBySlug(params.page, app.i18n.locale)
     }
   },
   methods: {

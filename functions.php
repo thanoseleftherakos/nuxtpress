@@ -101,3 +101,7 @@ function custom_post_gallery() {
 
   // activating generate queries
   require_once(dirname(__FILE__) . '/api_helpers/generate.php');
+  
+  require_once(dirname(__FILE__) . '/api_helpers/initialize.php');
+
+  require_once(dirname(__FILE__) . '/strings.php');
