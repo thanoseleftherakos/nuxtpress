@@ -1,9 +1,11 @@
 
 export default $axios => resource => ({
-  getPageBySlug(slug, lang) {
+  getPageBySlug(slug, lang, error) {
     return $axios.get(`${resource}/slug?_embed&slug=${slug}&lang=${lang}`)
             .then(r => r.data)
-            .catch(e => console.log(`${e.message}`))
+            .catch((e) => {
+              error({ statusCode: 404, message: 'Page not found' })
+            })
   },
   getFrontPage(lang) {
     return $axios.get(`${resource}/front-page?_embed&lang=${lang}`)

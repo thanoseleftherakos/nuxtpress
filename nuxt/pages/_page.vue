@@ -38,14 +38,9 @@ export default {
       }
     }
   },
-  async asyncData ({ params, app}) {
-    //fix nuxt-i18n bug for /localecode
-    if(app.i18n.locales.some(e => e.code === params.page)) {
-      params.page = null;
-      // app.switchLocalePath('el')
-    }
+   async asyncData ({error, params, app}) {
     return {
-      page: await app.$wordpressApi.getPageBySlug(params.page, app.i18n.locale)
+      page : await app.$wordpressApi.getPageBySlug(params.page, app.i18n.locale, error) 
     }
   },
   head () {
