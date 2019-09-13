@@ -1,6 +1,7 @@
 <template>
   <section class="home">
-      Home template!
+      Home template! <br>
+      {{ hello_world }}
       <h1 v-html="page.title.rendered"></h1>
       <div v-html="page.content.rendered"></div>
   </section>
@@ -16,10 +17,15 @@ export default {
   },
   data() {
     return {
-      page: {} 
+      page: {},
+      hello_world: ''
     }
   },
   mounted() {
+    console.log(this.initialization)
+    var hello_world = this.initialization.strings.filter(obj=>obj.name==='hello_world');
+    this.hello_world = hello_world[0].languages[this.$i18n.locale];
+
   },
   computed: {
     ...mapState(['initialization'])
